@@ -1,17 +1,27 @@
+import { InvalidEmailError } from './errors/invalid-email-error'
+
 class Email {
   constructor (private email: string | null | undefined) {}
 
-  public validate(): boolean {
-    if (!this.email) {
+  static create(email: string | null | undefined): Email | InvalidEmailError {
+    const isValid = Email.validate(email)
+    if (isValid) {
+      return new Email(email)
+    }
+    return new InvalidEmailError()
+  }
+
+  static validate(email: string | null | undefined): boolean {
+    if (!email) {
       return false
     }
 
     const emailRegex = /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
-    if (!emailRegex.test(this.email)) {
+    if (!emailRegex.test(email)) {
       return false
     }
 
-    const [local, domain] = this.email.split('@')
+    const [local, domain] = email.split('@')
     if (local.length === 0 || local.length > 64) {
       return false
     }
