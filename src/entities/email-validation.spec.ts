@@ -26,4 +26,10 @@ describe('email-validation.spec.ts', () => {
     const isValid = new Email(email).validate()
     expect(isValid).toBeFalsy()
   })
+
+  it('should not be able to accept domain larger than 255 chars', () => {
+    const email = 'john.doe@.' + 'com'.repeat(85)
+    const isValid = new Email(email).validate()
+    expect(isValid).toBeFalsy()
+  })
 })
