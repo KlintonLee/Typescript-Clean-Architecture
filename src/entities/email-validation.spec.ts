@@ -48,4 +48,9 @@ describe('email-validation.spec.ts', () => {
     const isValid = new Email(email).validate()
     expect(isValid).toBeFalsy()
   })
+
+  it('should not be able to accept invalid chars', () => {
+    const isValid = new Email('john doe@email.com').validate()
+    expect(isValid).toBeFalsy()
+  })
 })
