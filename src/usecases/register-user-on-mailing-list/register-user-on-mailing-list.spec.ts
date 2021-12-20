@@ -1,4 +1,4 @@
-import { IUserData } from './dtos/user-data'
+import { IUserData } from '../../entities/dtos/user-data'
 
 describe('register-user-on-mailing-list.spec.ts', () => {
   it('should add user with complete data on mailing list', async () => {

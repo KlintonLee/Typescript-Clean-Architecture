@@ -1,4 +1,4 @@
-import { IUserData } from '../dtos/user-data'
+import { IUserData } from '../../../entities/dtos/user-data'
 import { IUsersRepository } from '../ports/users-repository'
 
 class InMemoryUsersRepository implements IUsersRepository {

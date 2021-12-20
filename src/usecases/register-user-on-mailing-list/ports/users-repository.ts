@@ -1,4 +1,4 @@
-import { IUserData } from '../dtos/user-data'
+import { IUserData } from '../../../entities/dtos/user-data'
 
 interface IUsersRepository {
   insertUser(user: IUserData): Promise<void>
