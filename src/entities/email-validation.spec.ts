@@ -20,4 +20,10 @@ describe('email-validation.spec.ts', () => {
     const isValid = new Email('john.doe@email.com').validate()
     expect(isValid).toBeTruthy()
   })
+
+  it('should not be able to accept local part larger than 64 chars', () => {
+    const email = 'a'.repeat(65) + '@email.com'
+    const isValid = new Email(email).validate()
+    expect(isValid).toBeFalsy()
+  })
 })
