@@ -6,8 +6,12 @@ class Email {
       return false
     }
 
-    const [local] = this.email.split('@')
+    const [local, domain] = this.email.split('@')
     if (local.length > 64) {
+      return false
+    }
+
+    if (domain.length > 255) {
       return false
     }
 
