@@ -21,6 +21,11 @@ describe('email-validation.spec.ts', () => {
     expect(isValid).toBeTruthy()
   })
 
+  it('should not be able to accept empty local part', () => {
+    const isValid = new Email('@email.com').validate()
+    expect(isValid).toBeFalsy()
+  })
+
   it('should not be able to accept local part larger than 64 chars', () => {
     const email = 'a'.repeat(65) + '@email.com'
     const isValid = new Email(email).validate()
