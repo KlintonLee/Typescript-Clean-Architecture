@@ -15,6 +15,12 @@ class Email {
       return false
     }
 
+    const domainParts = domain.split('.')
+    const hasLargerThan63 = domainParts.some(domainPart => domainPart.length > 63)
+    if (hasLargerThan63) {
+      return false
+    }
+
     return true
   }
 }
