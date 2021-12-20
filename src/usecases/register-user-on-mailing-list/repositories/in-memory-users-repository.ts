@@ -5,10 +5,17 @@ class InMemoryUsersRepository implements IUsersRepository {
   constructor (private repository: IUserData[]) {}
 
   async insertUser(user: IUserData): Promise<void> {
-    throw new Error('Method not implemented.')
+    const userExists = await this.userExists(user)
+    if (!userExists) {
+      this.repository.push(user)
+    }
   }
 
   async findByEmail(email: string): Promise<IUserData | null> {
+    const user = this.repository.find(user => user.email === email)
+    if (user) {
+      return user
+    }
     return null
   }
 
@@ -17,7 +24,8 @@ class InMemoryUsersRepository implements IUsersRepository {
   }
 
   async userExists(user: IUserData): Promise<boolean> {
-    throw new Error('Method not implemented.')
+    const findUser = await this.findByEmail(user.email)
+    return !!findUser
   }
 }
 
