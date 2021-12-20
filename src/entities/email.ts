@@ -5,6 +5,12 @@ class Email {
     if (!this.email) {
       return false
     }
+
+    const [local] = this.email.split('@')
+    if (local.length > 64) {
+      return false
+    }
+
     return true
   }
 }
