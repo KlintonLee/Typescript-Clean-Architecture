@@ -2,7 +2,7 @@ import { Either, left, right } from '../shared/either'
 import { InvalidEmailError } from './errors/invalid-email-error'
 
 class Email {
-  private constructor (private readonly email: string | null | undefined) {}
+  private constructor (private readonly value: string | null | undefined) {}
 
   static create(email: string | null | undefined): Either<InvalidEmailError, Email> {
     const isValid = Email.validate(email)
