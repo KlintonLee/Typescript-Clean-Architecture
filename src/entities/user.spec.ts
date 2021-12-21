@@ -21,4 +21,10 @@ describe('user.spec.ts', () => {
     const error = User.create({ name: invalidName, email: 'john.doe@email.com' })
     expect(error).toEqual(left(new InvalidNameError()))
   })
+
+  it('should be able to create a valid user', () => {
+    const user: User = User.create({ name: 'John Doe', email: 'john.doe@email.com' }).value as User
+    expect(user.name.value).toEqual('John Doe')
+    expect(user.email.value).toEqual('john.doe@email.com')
+  })
 })
