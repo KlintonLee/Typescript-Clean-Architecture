@@ -1,14 +1,15 @@
+import { Either, left, right } from '../shared/either'
 import { InvalidEmailError } from './errors/invalid-email-error'
 
 class Email {
-  constructor (private email: string | null | undefined) {}
+  constructor (private readonly email: string | null | undefined) {}
 
-  static create(email: string | null | undefined): Email | InvalidEmailError {
+  static create(email: string | null | undefined): Either<InvalidEmailError, Email> {
     const isValid = Email.validate(email)
     if (isValid) {
-      return new Email(email)
+      return right(new Email(email))
     }
-    return new InvalidEmailError()
+    return left(new InvalidEmailError())
   }
 
   static validate(email: string | null | undefined): boolean {
