@@ -2,7 +2,7 @@ import { Either, left, right } from '../shared/either'
 import { InvalidNameError } from './errors/invalid-name-error'
 
 class Name {
-  private constructor (private readonly value: string) {}
+  private constructor (readonly value: string) {}
 
   static create(name: string): Either<InvalidNameError, Name> {
     const isValid = Name.validate(name)
