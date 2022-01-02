@@ -1,9 +1,7 @@
-import { IUserData } from './dtos/user-data'
-import { Either, left, right } from '../shared/either'
-import { Name } from './name'
-import { Email } from './email'
-import { InvalidNameError } from './errors/invalid-name-error'
-import { InvalidEmailError } from './errors/invalid-email-error'
+import { IUserData } from './dtos'
+import { Either, left, right } from '../shared'
+import { InvalidNameError, InvalidEmailError } from './errors'
+import { Email, Name } from '.'
 
 class User {
   private constructor (

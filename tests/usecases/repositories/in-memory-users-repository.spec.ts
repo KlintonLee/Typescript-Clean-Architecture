@@ -1,4 +1,4 @@
-import { IUserData } from '../../../src/entities/dtos/user-data'
+import { IUserData } from '../../../src/entities/dtos'
 import { InMemoryUsersRepository } from './in-memory-users-repository'
 
 describe('in-memory-users-repository.spec.ts', () => {

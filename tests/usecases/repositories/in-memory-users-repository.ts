@@ -1,5 +1,5 @@
-import { IUserData } from '../../../src/entities/dtos/user-data'
-import { IUsersRepository } from '../../../src/usecases/register-user-on-mailing-list/ports/users-repository'
+import { IUserData } from '../../../src/entities/dtos'
+import { IUsersRepository } from '../../../src/usecases/register-user-on-mailing-list/ports'
 
 class InMemoryUsersRepository implements IUsersRepository {
   constructor (private repository: IUserData[]) {}
