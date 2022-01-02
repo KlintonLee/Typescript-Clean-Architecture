@@ -1,6 +1,6 @@
-import { IUserData } from '../../entities/dtos/user-data'
-import { IUsersRepository } from './ports/users-repository'
-import { RegisterUserOnMailingList } from './register-user-on-mailing-list'
+import { IUserData } from '../../src/entities/dtos/user-data'
+import { IUsersRepository } from '../../src/usecases/register-user-on-mailing-list/ports/users-repository'
+import { RegisterUserOnMailingList } from '../../src/usecases/register-user-on-mailing-list/register-user-on-mailing-list'
 import { InMemoryUsersRepository } from './repositories/in-memory-users-repository'
 
 describe('register-user-on-mailing-list.spec.ts', () => {

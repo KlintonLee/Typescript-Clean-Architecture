@@ -1,4 +1,4 @@
-import { User } from './user'
+import { User } from '../../src/entities/user'
 
 describe('user.spec.ts', () => {
   it('should not be able to create an user with invalid email', () => {
