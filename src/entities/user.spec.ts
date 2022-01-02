@@ -1,25 +1,25 @@
 import { User } from './user'
-import { left } from '../shared/either'
-import { InvalidEmailError } from './errors/invalid-email-error'
-import { InvalidNameError } from './errors/invalid-name-error'
 
 describe('user.spec.ts', () => {
   it('should not be able to create an user with invalid email', () => {
     const invalidEmail = 'john.doe'
-    const error = User.create({ name: 'John Doe', email: invalidEmail })
-    expect(error).toEqual(left(new InvalidEmailError()))
+    const error = User.create({ name: 'John Doe', email: invalidEmail }).value as Error
+    expect(error.name).toEqual('InvalidEmailError')
+    expect(error.message).toEqual('Invalid email: john.doe.')
   })
 
   it('should not be able to create an user with invalid name (too few characters)', () => {
     const invalidName = 'O    '
-    const error = User.create({ name: invalidName, email: 'john.doe@email.com' })
-    expect(error).toEqual(left(new InvalidNameError()))
+    const error = User.create({ name: invalidName, email: 'john.doe@email.com' }).value as Error
+    expect(error.name).toEqual('InvalidNameError')
+    expect(error.message).toEqual(`Invalid name: ${invalidName}.`)
   })
 
   it('should not be able to create an user with invalid name (too many characters)', () => {
     const invalidName = 'a'.repeat(257)
-    const error = User.create({ name: invalidName, email: 'john.doe@email.com' })
-    expect(error).toEqual(left(new InvalidNameError()))
+    const error = User.create({ name: invalidName, email: 'john.doe@email.com' }).value as Error
+    expect(error.name).toEqual('InvalidNameError')
+    expect(error.message).toEqual(`Invalid name: ${invalidName}.`)
   })
 
   it('should be able to create a valid user', () => {
