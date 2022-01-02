@@ -14,7 +14,7 @@ class RegisterUserController {
   public async handle(request: IHttpRequest): Promise<IHttpResponse> {
     const userData: IUserData = request.body
     if (!userData.name || !userData.email) {
-      this.httpResponse.body = new InvalidParamsError(request)
+      this.httpResponse.body = new InvalidParamsError('name or email is invalid.')
       return this.httpResponse
     }
 
