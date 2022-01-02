@@ -10,7 +10,7 @@ class Name {
       return right(new Name(name))
     }
 
-    return left(new InvalidNameError())
+    return left(new InvalidNameError(name))
   }
 
   static validate(name: string | null | undefined): boolean {
