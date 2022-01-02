@@ -3,7 +3,7 @@ import { IUserData } from '../../src/entities/dtos'
 import { InMemoryUsersRepository } from '../usecases/repositories/in-memory-users-repository'
 import { RegisterUserOnMailingList } from '../../src/usecases/register-user-on-mailing-list'
 import { RegisterUserController } from '../../src/controllers/register-user-controller'
-import { InvalidEmailError, InvalidNameError, InvalidParamsError } from '../../src/entities/errors'
+import { InvalidEmailError, InvalidNameError, GenericError } from '../../src/entities/errors'
 
 let users: Array<IUserData>
 let repo: InMemoryUsersRepository
@@ -66,7 +66,7 @@ describe('register-user-controller.spec.ts', () => {
 
     const response: IHttpResponse = await controller.handle(request)
     expect(response.statusCode).toBe(400)
-    expect(response.body).toBeInstanceOf(InvalidParamsError)
+    expect(response.body).toBeInstanceOf(GenericError)
   })
 
   it('should return status 400 when request is missing email as params', async () => {
@@ -78,6 +78,6 @@ describe('register-user-controller.spec.ts', () => {
 
     const response: IHttpResponse = await controller.handle(request)
     expect(response.statusCode).toBe(400)
-    expect(response.body).toBeInstanceOf(InvalidParamsError)
+    expect(response.body).toBeInstanceOf(GenericError)
   })
 })

@@ -1,3 +1,3 @@
 export * from './invalid-email-error'
 export * from './invalid-name-error'
-export * from './invalid-params-error'
+export * from './generic-error'
