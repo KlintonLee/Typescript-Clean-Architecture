@@ -4,6 +4,8 @@ import { InMemoryUsersRepository } from '../usecases/repositories/in-memory-user
 import { RegisterUserOnMailingList } from '../../src/usecases/register-user-on-mailing-list'
 import { RegisterUserController } from '../../src/controllers/register-user-controller'
 import { InvalidEmailError, InvalidNameError, GenericError } from '../../src/entities/errors'
+import { ErrorThrowingUseCaseStub } from './utils/error-throwing-use-case-stub'
+import { IUseCases } from '../../src/usecases/register-user-on-mailing-list/ports'
 
 let users: Array<IUserData>
 let repo: InMemoryUsersRepository
@@ -79,5 +81,20 @@ describe('register-user-controller.spec.ts', () => {
     const response: IHttpResponse = await controller.handle(request)
     expect(response.statusCode).toBe(400)
     expect(response.body).toBeInstanceOf(GenericError)
+  })
+
+  it('should return status code 500 when server raises', async () => {
+    const request: IHttpRequest = {
+      body: {
+        name: 'a',
+        email: 'john.doe@email.com'
+      }
+    }
+
+    const errorThrowingUseCaseStub: IUseCases = new ErrorThrowingUseCaseStub()
+    const errorController = new RegisterUserController(errorThrowingUseCaseStub)
+    const response: IHttpResponse = await errorController.handle(request)
+    expect(response.statusCode).toBe(500)
+    expect(response.body).toBeInstanceOf(Error)
   })
 })
