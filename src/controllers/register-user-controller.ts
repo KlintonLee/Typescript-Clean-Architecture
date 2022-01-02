@@ -18,7 +18,7 @@ class RegisterUserController {
       return this.httpResponse
     }
 
-    const response = await this.usecase.registerUserOnMailingList(userData)
+    const response = await this.usecase.perform(userData)
 
     if (response.isRight()) {
       this.httpResponse.statusCode = 201

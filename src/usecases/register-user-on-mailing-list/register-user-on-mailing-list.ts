@@ -2,12 +2,12 @@ import { IUserData } from '../../entities/dtos'
 import { InvalidEmailError, InvalidNameError } from '../../entities/errors'
 import { User } from '../../entities'
 import { Either, left, right } from '../../shared'
-import { IUsersRepository } from './ports'
+import { IUsersRepository, IUseCases } from './ports'
 
-class RegisterUserOnMailingList {
+class RegisterUserOnMailingList implements IUseCases {
   constructor(private readonly usersRepository: IUsersRepository) {}
 
-  public async registerUserOnMailingList(request: IUserData):
+  public async perform(request: IUserData):
     Promise<Either<InvalidNameError | InvalidEmailError, IUserData>> {
     const userOrError: Either<InvalidNameError | InvalidEmailError, User> = User.create(request)
     if (userOrError.isLeft()) {
