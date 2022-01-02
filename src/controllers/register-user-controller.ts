@@ -1,4 +1,5 @@
 import { IUserData } from '../entities/dtos'
+import { InvalidParamsError } from '../entities/errors'
 import { RegisterUserOnMailingList } from '../usecases/register-user-on-mailing-list'
 import { IHttpRequest, IHttpResponse } from './ports'
 
@@ -12,13 +13,18 @@ class RegisterUserController {
 
   public async handle(request: IHttpRequest): Promise<IHttpResponse> {
     const userData: IUserData = request.body
+    if (!userData.name || !userData.email) {
+      this.httpResponse.body = new InvalidParamsError(request)
+      return this.httpResponse
+    }
+
     const response = await this.usecase.registerUserOnMailingList(userData)
 
     if (response.isRight()) {
       this.httpResponse.statusCode = 201
-      this.httpResponse.body = userData
     }
 
+    this.httpResponse.body = response.value
     return this.httpResponse
   }
 }
