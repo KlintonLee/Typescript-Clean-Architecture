@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../../../src/main/config/app'
+import app from '../../../../src/main/config/app'
 
 describe('content-type.test.ts', () => {
   it('should return default content-type as json', async () => {

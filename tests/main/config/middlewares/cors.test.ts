@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../../../src/main/config/app'
+import app from '../../../../src/main/config/app'
 
 describe('cors.test.ts', () => {
   it('should enable CORS', async () => {
