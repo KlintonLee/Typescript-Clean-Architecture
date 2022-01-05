@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../../../../src/main/config/app'
+import app from '../../../src/main/config/app'
 
 describe('express-route.test.ts', () => {
   it('should return an account on success', async () => {
