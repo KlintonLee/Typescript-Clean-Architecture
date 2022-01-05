@@ -1,7 +1,7 @@
 import { IUserData } from '../../src/entities/dtos'
 import { IUsersRepository } from '../../src/usecases/register-user-on-mailing-list/ports'
 import { RegisterUserOnMailingList } from '../../src/usecases/register-user-on-mailing-list'
-import { InMemoryUsersRepository } from './repositories/in-memory-users-repository'
+import { InMemoryUsersRepository } from '../../src/usecases/repositories/in-memory-users-repository'
 
 describe('register-user-on-mailing-list.spec.ts', () => {
   it('should add user with complete data on mailing list', async () => {

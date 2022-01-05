@@ -1,6 +1,6 @@
 import { IHttpRequest, IHttpResponse } from '../../src/controllers/ports'
 import { IUserData } from '../../src/entities/dtos'
-import { InMemoryUsersRepository } from '../usecases/repositories/in-memory-users-repository'
+import { InMemoryUsersRepository } from '../../src/usecases/repositories/in-memory-users-repository'
 import { RegisterUserOnMailingList } from '../../src/usecases/register-user-on-mailing-list'
 import { RegisterUserController } from '../../src/controllers/register-user-controller'
 import { InvalidEmailError, InvalidNameError, GenericError } from '../../src/entities/errors'

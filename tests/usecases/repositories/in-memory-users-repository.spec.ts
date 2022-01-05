@@ -1,5 +1,5 @@
 import { IUserData } from '../../../src/entities/dtos'
-import { InMemoryUsersRepository } from './in-memory-users-repository'
+import { InMemoryUsersRepository } from '../../../src/usecases/repositories/in-memory-users-repository'
 
 describe('in-memory-users-repository.spec.ts', () => {
   it('should return null if user it not found', async () => {
