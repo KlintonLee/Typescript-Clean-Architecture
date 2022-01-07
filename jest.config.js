@@ -1,4 +1,5 @@
 module.exports = {
+  preset: '@shelf/jest-mongodb',
   roots: ['<rootDir>/tests'],
   bail: 1,
   clearMocks: true,
@@ -8,7 +9,6 @@ module.exports = {
     '!**/test/**',
     '!**/config/**'
   ],
-  testEnvironment: 'node',
   transform: {
     '.+\\.ts$': 'ts-jest'
   }
